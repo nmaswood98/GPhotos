@@ -225,7 +225,7 @@ public extension Albums {
     }
 
     func create(title: String, completion: @escaping ((Album?)->())) {
-        self.create(album: Album(JSON: ["title":title,"isWriteable":nil, "coverPhotoBaseUrl":nil,"id":"","productUrl":"","mediaItemsCount":"0","coverPhotoMediaItemId":"","shareInfo":nil])!,completion)
+        self.create(album: Album(JSON: ["title":title,"isWriteable":nil, "coverPhotoBaseUrl":nil,"id":"","productUrl":"","mediaItemsCount":"0","coverPhotoMediaItemId":"","shareInfo":nil])!,completion: completion)
     }
     
 }
