@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
     s.author       = { "Deivi Taka" => "deivitaka@gmail.com" }
     s.social_media_url = 'https://www.linkedin.com/in/deivitaka/'
     
-    s.source       = { :git => "https://github.com/deivitaka/GPhotos.git", :tag => "#{s.version}" }
+    s.source       = { :git => "https://github.com/nmaswood98/GPhotos.git", :tag => "#{s.version}" }
     s.source_files  = "GPhotos/**/*"
     # s.exclude_files = "GPhotosTests/*.swift"
     s.swift_version = "5.0"
