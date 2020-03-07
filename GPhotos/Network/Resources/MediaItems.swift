@@ -235,5 +235,40 @@ public extension MediaItems {
         
         upload()
     }
+
+        func upload(images: [UIImage], filenames: [String?] = [], albumID: String, completion: @escaping (([MediaItemsBatchCreate.NewMediaItemResult])->())) {
+        var images = images
+        var filenames = filenames
+        var tokens = [String]()
+        
+        func addItems() {
+            let req = MediaItemsBatchCreate.Request()
+            req.albumId = albumID;
+            req.newMediaItems = tokens.map({
+                let simpleItem = MediaItemsBatchCreate.SimpleMediaItem()
+                simpleItem.uploadToken = $0
+                
+                let item = MediaItemsBatchCreate.NewMediaItem()
+                item.description = ""
+                item.simpleMediaItem = simpleItem
+                
+                return item
+            })
+            createBatch(with: req, completion: completion)
+        }
+        
+        func upload() {
+            if images.isEmpty {
+                addItems()
+                return
+            }
+            self.upload(image: images.popLast()!, filename: filenames.popLast()!) { (token) in
+                if let token = token { tokens.append(token) }
+                upload()
+            }
+        }
+        
+        upload()
+    }
     
 }
